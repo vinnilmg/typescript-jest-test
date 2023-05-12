@@ -5,3 +5,6 @@ Dependências do jest:
 
 Executar os testes:
 - npx jest
+- npx jest jest --watchAll --silent --noStackTrace
+- npm run test
+- npm run test:silent
