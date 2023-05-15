@@ -1,27 +1,56 @@
 import { Calculadora } from '../calc/calculadora';
 
+// System under test
+const createSut = () => {
+  return new Calculadora();
+};
+
 describe('Calculadora', () => {
   afterEach(() => jest.clearAllMocks()); // Limpar mocks
 
-  it('should return undefined', () => {
-    // System under test
-    const sut = new Calculadora();
-    expect(sut.somaDoisNumeros(1, 2)).toBeUndefined();
+  describe('imprimeResultado', () => {
+    it('should return undefined', () => {
+      const sut = createSut();
+      expect(sut.imprimeResultado()).toBeUndefined();
+    });
+
+    it('should call console.log once', () => {
+      const sut = createSut();
+      const consoleSpy = jest.spyOn(console, 'log'); // "Observando" o método console.log (mock)
+
+      sut.imprimeResultado();
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call console.log with "O resultado é 0"', () => {
+      const sut = createSut();
+      const consoleSpy = jest.spyOn(console, 'log');
+
+      sut.imprimeResultado();
+      expect(consoleSpy).toHaveBeenCalledWith('O resultado é 0');
+    });
   });
 
-  it('should call console.log once', () => {
-    const sut = new Calculadora();
-    const consoleSpy = jest.spyOn(console, 'log'); // "Observando" o método console.log (mock)
+  describe('somaDoisNumeros', () => {
+    it('should return undefined', () => {
+      const sut = createSut();
+      expect(sut.somaDoisNumeros(1, 2)).toBeUndefined();
+    });
 
-    sut.imprimeResultado();
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
-  });
+    it('should call console.log once', () => {
+      const sut = createSut();
+      const consoleSpy = jest.spyOn(console, 'log');
 
-  it('should call console.log with "O resultado é 0"', () => {
-    const sut = new Calculadora();
-    const consoleSpy = jest.spyOn(console, 'log');
+      sut.somaDoisNumeros(1, 2);
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+    });
 
-    sut.imprimeResultado();
-    expect(consoleSpy).toHaveBeenCalledWith('O resultado é 0');
+    it('should call console.log with "Calculando:" and x and "+" and y', () => {
+      const sut = createSut();
+      const consoleSpy = jest.spyOn(console, 'log');
+
+      sut.somaDoisNumeros(1, 2);
+      expect(consoleSpy).toHaveBeenCalledWith('Calculando:', 1, '+', 2);
+    });
   });
 });

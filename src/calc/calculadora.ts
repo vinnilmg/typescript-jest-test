@@ -2,6 +2,7 @@ export class Calculadora {
   resultado = 0;
 
   somaDoisNumeros(x: number, y: number): void {
+    console.log('Calculando:', x, '+', y);
     this.resultado = x + y;
   }
 
