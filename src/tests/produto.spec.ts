@@ -6,7 +6,7 @@ const createSut = (name: string, price: number): Produto => {
 };
 
 describe('Produto', () => {
-  it('should be return undefined', () => {
+  it('should have properties name and price', () => {
     const sut = createSut('Camiseta', 49.9);
 
     expect(sut).toHaveProperty('name', 'Camiseta');
