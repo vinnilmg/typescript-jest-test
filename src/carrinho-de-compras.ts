@@ -7,6 +7,7 @@ export interface Produto {
 
 export class CarrinhoDeCompras {
   private readonly _items: Produto[] = [];
+  private result = 0;
 
   constructor(public desconto: Desconto) {}
 
@@ -24,5 +25,18 @@ export class CarrinhoDeCompras {
 
   getQtdItems(): number {
     return this._items.length;
+  }
+
+  total() {
+    return this.getItens().reduce((acc, currentValue) => acc + currentValue.preco, 0);
+  }
+
+  checkout() {
+    return this.result;
+  }
+
+  calculaDesconto(): number {
+    this.result = this.desconto.calculaWithDesconto(this.total());
+    return this.result;
   }
 }

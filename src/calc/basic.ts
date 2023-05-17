@@ -2,7 +2,7 @@ function soma(...numbers: number[]): number {
   return numbers.reduce((acc, currentValue) => acc + currentValue, 0);
 }
 
-function multiplica(...numbers: number[]): number {
+export function multiplica(...numbers: number[]): number {
   return numbers.reduce((acc, currentValue) => acc * currentValue, 1);
 }
 

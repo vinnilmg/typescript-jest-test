@@ -1,3 +1,7 @@
 export class Desconto {
-  public readonly desconto = 0.1;
+  constructor(public desconto: number) {}
+
+  calculaWithDesconto(total: number): number {
+    return total * this.desconto;
+  }
 }
